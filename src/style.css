@@ -73,6 +73,12 @@ nav > button:hover {
   text-align: center;
 }
 
+.joker {
+  font-size: 2rem;
+  display: grid;
+  place-content: center;
+}
+
 .card__bottom {
   text-align: start;
   transform: rotate(180deg);

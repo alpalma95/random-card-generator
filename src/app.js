@@ -9,7 +9,7 @@ window.onload = function() {
   const values = {
     suit: ["♦", "♥", "♠", "♣"],
     generateValue() {
-      let num = Math.trunc(Math.random() * 13 + 1);
+      let num = Math.trunc(Math.random() * 14 + 1);
 
       return num === 11
         ? "J"
@@ -19,6 +19,8 @@ window.onload = function() {
         ? "K"
         : num === 1
         ? "A"
+        : num === 14
+        ? "Jk"
         : num;
     },
     generateSuit() {
@@ -29,7 +31,15 @@ window.onload = function() {
   const newCardHandler = () => {
     let suit = values.generateSuit();
     let value = values.generateValue();
-    root.innerHTML = `<div class='card'>
+    let joker = `<div class='card joker'>
+          <div class="card__value ${
+            suit === "♦" || suit === "♥" ? "red" : "black"
+          }">
+            Why so serious? 😈
+          </div>   
+    </div>`;
+
+    let noJoker = `<div class='card'>
     <div class='card__upper ${
       suit === "♦" || suit === "♥" ? "red" : "black"
     }'>${suit}</div>
@@ -38,6 +48,8 @@ window.onload = function() {
       suit === "♦" || suit === "♥" ? "red" : "black"
     }'>${suit}</div>
   </div>`;
+
+    root.innerHTML = value === "Jk" ? joker : noJoker;
   };
 
   let myTimer;
